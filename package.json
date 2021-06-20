@@ -1,0 +1,23 @@
+{
+  "name": "inoc",
+  "version": "1.0.0",
+  "description": "Inter-Object Communication",
+  "homepage": "https://github.com/edgarsegundo/inoc#readme",
+  "repository": "edgar.segundo/inoc",
+  "main": "index.js",
+  "scripts": {    
+  },
+  "keywords": [
+    "event",
+    "npm",
+    "package",
+    "handler",
+    "state",
+    "management",
+    "object",
+    "communication"
+  ],
+  "email": "edgar.segundo@gmail.com",
+  "author": "edre",
+  "license": "MIT"
+}
