@@ -1,12 +1,11 @@
 {
   "name": "inoc",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Inter-Object Communication",
   "homepage": "https://github.com/edgarsegundo/inoc#readme",
   "repository": "edgar.segundo/inoc",
   "main": "index.js",
-  "scripts": {    
-  },
+  "scripts": {},
   "keywords": [
     "event",
     "npm",
