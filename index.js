@@ -19,6 +19,7 @@
 
  module.exports.subscribe = subscribe
  module.exports.unsubscribe = unsubscribe
+ module.exports.unsubscribeAll = unsubscribeAll
  module.exports.notify = notify
 
 /**
@@ -33,7 +34,7 @@
  */
 
 function subscribe (notificationId, subscriberId, state, notificationCallback, notifyOnlyOnce = false) {
-    var subscribers;
+    let subscribers;
 
     if (notifications.hasOwnProperty(notificationId)) {
         subscribers = notifications[notificationId];
@@ -56,13 +57,26 @@ function subscribe (notificationId, subscriberId, state, notificationCallback, n
 
 function unsubscribe (notificationId, subscriberId) {
     if (notifications.hasOwnProperty(notificationId)) {
-        var subscribers = notifications[notificationId];
-
+        let subscribers = notifications[notificationId];
         subscribers.forEach((e) => {
             if (subscriberId == e.subscriberId) if (subscribers.remove(e)) return (true);
         });
       }
       return (false);
+}
+
+/**
+ * Unsubscribe all notifications of a subscriber
+ *
+ * @param {String} subscriberId
+ * @public
+ */
+
+function unsubscribeAll(subscriberId) {
+    if(subscriberId)
+        for (let key in notifications)
+            if (notifications.hasOwnProperty(key))
+                unsubscribe(notifications[key], subscriberId)
 }
 
 /**
