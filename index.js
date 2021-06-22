@@ -51,18 +51,25 @@ function subscribe (notificationId, subscriberId, state, notificationCallback, n
  *
  * @param {String} notificationId
  * @param {String} subscriberId
- * @return {Boolean}
+ * @return {Integer}
  * @public
  */
 
-function unsubscribe (notificationId, subscriberId) {
+ function unsubscribe (notificationId, subscriberId) {
     if (notifications.hasOwnProperty(notificationId)) {
         let subscribers = notifications[notificationId];
-        subscribers.forEach((e) => {
-            if (subscriberId == e.subscriberId) if (subscribers.remove(e)) return (true);
-        });
+        if(subscribers) {
+            let count = 0
+            for(let i = 0; i < subscribers.length; i += 1) {
+                if (subscriberId == subscribers[i].subscriberId) {
+                    subscribers.splice(i, 1)
+                    i -= 1
+                    count += 1
+                }
+            }
+            return count
+        }
       }
-      return (false);
 }
 
 /**
@@ -75,8 +82,7 @@ function unsubscribe (notificationId, subscriberId) {
 function unsubscribeAll(subscriberId) {
     if(subscriberId)
         for (let key in notifications)
-            if (notifications.hasOwnProperty(key))
-                unsubscribe(notifications[key], subscriberId)
+            if (notifications.hasOwnProperty(key)) unsubscribe(key, subscriberId)
 }
 
 /**
